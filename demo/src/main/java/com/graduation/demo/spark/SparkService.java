@@ -22,7 +22,7 @@ public class SparkService {
 
     public Map<String, Object> sparkDemo() {
         Map<String, Object> res = new HashMap<String, Object>();
-        JavaRDD<String> lines = javaSparkContext.textFile("src/main/java/com/graduation/demo/resources/sdeegsa.txt").cache();
+        JavaRDD<String> lines = javaSparkContext.textFile("src/main/resources/sdeegsa.txt").cache();
         lines.map(
                 str -> {
                     System.out.println(str);
