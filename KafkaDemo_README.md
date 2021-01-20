@@ -22,6 +22,8 @@ Scala安装：[厦大数据库实验室Scala安装](http://dblab.xmu.edu.cn/blog
 > zookeeper 3.6.1
 >
 > kafka_2.12-2.5.0
+>
+> apache-tomcat-8.5.61
 
 ### jdk的安装
 
@@ -232,6 +234,73 @@ log.dirs=/home/zcb/kafka_2.12-2.5.0/logs
 > ./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic demo
 
 此时在生产者中发送消息,可以观察能否在消费者中接受到,若成功接受到,则代表安装完成
+
+## tomcat安装
+
+安装tomcat参考[博客](https://www.cnblogs.com/weosuper/p/10591877.html)
+
+版本为  apache-tomcat-8.5.61
+
+简化tomcat启动参考[博客](https://yq.aliyun.com/articles/762676)
+
+只看其中的第四部分：创建SystemD单元文件
+
+配置文件如下：
+
+```bash
+[Unit]
+Description=Tomcat Service
+After=network.target
+
+[Service]
+Type=forking
+
+Environment="JAVA_HOME=/usr/local/java/jdk1.8.0_161"
+Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom -Djava.awt.headless=true"
+
+Environment="CATALINA_BASE=/usr/local/apache-tomcat-8.5.61"
+Environment="CATALINA_HOME=/usr/local/apache-tomcat-8.5.61"
+Environment="CATALINA_PID=/usr/local/apache-tomcat-8.5.61/temp/tomcat.pid"
+Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+
+ExecStart=/usr/local/apache-tomcat-8.5.61/bin/startup.sh
+ExecStop=/usr/local/apache-tomcat-8.5.61/bin/shutdown.sh
+
+[Install]
+WantedBy=multi-user.target
+```
+
+将设置开机启动tomcat
+
+```sh
+sudo systemctl enable tomcat
+```
+
+启动tomcat
+
+```sh
+sudo systemctl start tomcat
+```
+
+在浏览器中访问localhost:8080
+
+出现tomcat页面表示tomcat启动成功
+
+
+
+检查的服务状态
+
+```sh
+sudo systemctl status tomcat
+```
+
+关闭tomcat
+
+```sh
+sudo systemctl stop tomcat
+```
+
+
 
 ---
 
