@@ -237,7 +237,7 @@ log.dirs=/home/zcb/kafka_2.12-2.5.0/logs
 
 此时在生产者中发送消息,可以观察能否在消费者中接受到,若成功接受到,则代表安装完成
 
-## tomcat安装
+### tomcat安装
 
 安装tomcat参考[博客](https://www.cnblogs.com/weosuper/p/10591877.html)
 
@@ -304,7 +304,7 @@ sudo systemctl stop tomcat
 
 
 
-## nginx安装
+### nginx安装
 
 1. 首先下载nginx-1.17.10.tar.gz安装包
 
