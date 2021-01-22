@@ -24,6 +24,8 @@ Scala安装：[厦大数据库实验室Scala安装](http://dblab.xmu.edu.cn/blog
 > kafka_2.12-2.5.0
 >
 > apache-tomcat-8.5.61
+>
+> nginx-1.17.10.tar.gz
 
 ### jdk的安装
 
@@ -299,6 +301,61 @@ sudo systemctl status tomcat
 ```sh
 sudo systemctl stop tomcat
 ```
+
+
+
+## nginx安装
+
+1. 首先下载nginx-1.17.10.tar.gz安装包
+
+2. 解压缩安装包
+
+```sh
+cd /usr/local
+mkdir nginx
+cd nginx
+tar zxvf /home/hsb/LinuxSoftware/nginx-1.17.10.tar.gz -C ./
+```
+
+之后将在/usr/local/nginx目录下出现一个nginx-1.17.10的文件夹
+
+3. 安装环境依赖
+
+```sh
+apt-get install gcc
+apt-get install libpcre3 libpcre3-dev
+apt-get install zlib1g zlib1g-dev
+# Ubuntu的仓库中没有发现openssl-dev，由下面openssl和libssl-dev替代
+#apt-get install openssl openssl-dev
+sudo apt-get install openssl 
+sudo apt-get install libssl-dev
+```
+
+4. 编译安装nginx
+
+```sh
+cd nginx-1.17.10
+./configure
+make && make install
+```
+
+5. 启动nginx
+
+`/usr/local/nginx/sbin/nginx`
+
+停止nginx服务
+
+`/usr/local/nginx/sbin/nginx -s stop`
+
+修改了配置文件后想重新加载Nginx
+
+`/usr/local/nginx/sbin/nginx -s reload`
+
+配置文件位于`/usr/local/nginx/conf/nginx.conf`
+
+6. 验证
+
+在浏览器中输入本地IP，出现`Welcome to nginx!`表示安装成功。
 
 
 
