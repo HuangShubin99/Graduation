@@ -69,14 +69,14 @@ public class Upload extends HttpServlet {
                    // 3. 保存文件
                    FileUtils.copyInputStreamToFile(is, new File(serverPath + "/" + name));*/
 
-                    if (StringUtils.isEmpty(fileMd5)){
+                    if (StringUtils.isEmpty(fileMd5)) {
                         fileMd5 = "test";//假如md5没有，就用test作为目录名
                     }
-                    if (StringUtils.isEmpty(chunk)){
+                    if (StringUtils.isEmpty(chunk)) {
                         chunk = fileItem.getName();//filename
                     }
 
-                    // 如果文件夹没有创建文件夹
+                    // 如果文件夹没有,创建文件夹
                     File file = new File(serverPath + File.separator + fileMd5);
                     if (!file.exists()) {
                         file.mkdirs();

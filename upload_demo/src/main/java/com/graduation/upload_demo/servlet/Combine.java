@@ -57,7 +57,7 @@ public class Combine extends HttpServlet {
             });
 
 
-            File outputFile = new File(serverPath + File.separator + UUID.randomUUID().toString() + File.separator + fileName);
+            File outputFile = new File(serverPath + File.separator + fileName);
 
             File parentFile = outputFile.getParentFile();
             if (!parentFile.exists()) {
@@ -90,6 +90,8 @@ public class Combine extends HttpServlet {
             if (tempFile.isDirectory() && tempFile.exists()) {
                 tempFile.delete();
             }
+
+
 
             System.out.println("合并文件成功：" + outputFile.getAbsolutePath());
 
