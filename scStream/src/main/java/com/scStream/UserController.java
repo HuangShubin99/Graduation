@@ -1,4 +1,4 @@
-package com.hsb.login;
+package com.scStream;
 
 import java.util.List;
 import org.slf4j.Logger;
@@ -88,3 +88,4 @@ public class UserController {
 
 
 }
+
